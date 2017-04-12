@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view locale="#{localeChanger.currentLocale}">
+    <h:head>
+        <title>#{msg.title}</title>
+        <h:outputStylesheet library="css" name="style_index.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputScript library="js" name="index.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.js" target="head"/>
+    </h:head>
+    <h:body>
+        <noscript>
+            <h3><p>#{msg.js_error}</p></h3>
+            <style type="text/css">
+                    .main { display:none; }
+                    p { text-align: center; }
+            </style>
+        </noscript>
+
+        
+        
+        <div class="container-fluid">
+            
+            
+            <h:panelGroup>
+            <h:form>
+                
+                <div class="index" align="right">                    
+                    <ui:include src="/templates/header.xhtml"/>
+                    <br></br><br></br><br></br>
+                    
+                    
+                    <div class="login">
+                     <!-- LOCALE TEMPLATE -->
+                     <ui:include src="/templates/locales.xhtml"/>
+                     
+                     <!-- FIELD FOR LOGIN -->
+                    <tr>
+                         <td>
+                             <h:inputText class="input"></h:inputText>
+                         </td>                        
+                        <td width="200" align="left"><span style="color:red;">*</span> #{msg.input_name}</td>
+                    </tr>
+                     
+                    <!-- FIELD FOR PASSWORD -->
+                    <tr>
+                        <td>
+                            <h:inputSecret class="input"></h:inputSecret>
+                        </td>
+                         <td width="200" align="left"><span style="color:red;">*</span> #{msg.input_passwd}</td>
+                    </tr>
+                    <br></br><br></br>
+                    
+                    <!-- LOGIN BUTTON -->
+                    <tr>
+                        <td>
+                            <h:commandButton action=" " value="#{msg.log_in}" styleClass="btn btn-info"></h:commandButton>
+                        </td>
+                    </tr>
+                    <!-- REG BUTTON -->
+                    <tr>
+                        <td>
+                            <h:commandButton action=" " value="#{msg.registration}" styleClass="btn btn-info"></h:commandButton>
+                        </td>
+                    </tr>
+                    </div>
+                </div>
+                
+            </h:form>
+        </h:panelGroup>
+        </div>
+        
+         <!-- FOOTER TEMPLATE -->
+         <div class="footer">
+            <ui:include src="/templates/footer.xhtml"/>           
+        </div>
+    </h:body>
+    </f:view>
+</html>
+
