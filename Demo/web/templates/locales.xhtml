@@ -16,14 +16,16 @@
                 <h:form>
 
                     <h:commandLink action="#{localeChanger.changeLocale('en')}">
-                        <h:graphicImage library="img" name="eng.png" />
-                        <!--<f:ajax render=":login_div :lib_title" execute="@form"/> -->
-                        <f:ajax render="@all" execute="@form" />
+                        <h:graphicImage library="img" name="eng.png" /> 
+                        <!-- INDEX -->
+                        <f:ajax render=":login_div :footer" execute="@form" disabled="#{fn:contains(request.requestURL, 'main.xhtml')}"/> 
+                        <f:ajax render="@all" execute="@form" disabled="#{not fn:contains(request.requestURL, 'main.xhtml')}"/>
                     </h:commandLink>
                     <h:commandLink action = "#{localeChanger.changeLocale('ru')}">
                         <h:graphicImage library="img" name="rus.png"/>
-                        <!--<f:ajax render=":login_div :lib_title" execute="@form"/> -->
-                        <f:ajax render="@all" execute="@form" />
+                        <!-- INDEX -->
+                        <f:ajax render=":login_div :footer" execute="@form" disabled="#{fn:contains(request.requestURL, 'main.xhtml')}"/>
+                        <f:ajax render="@all" execute="@form" disabled="#{not fn:contains(request.requestURL, 'main.xhtml')}"/>
                     </h:commandLink>
 
                 </h:form>

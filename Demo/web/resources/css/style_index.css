@@ -150,3 +150,9 @@ body {
 .input:focus {
     box-shadow: inset 4px 4px 6px #EEEEEE;
 }
+.error{
+    color:#ff0000;
+    font-style: italic;
+    font-size: 12px;
+    
+}

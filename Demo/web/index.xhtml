@@ -13,6 +13,7 @@
         <h:outputScript library="js" name="bootstrap.js" target="head"/>
     </h:head>
     <h:body>
+        
         <noscript>
             <h3><p>#{msg.js_error}</p></h3>
             <style type="text/css">
@@ -20,28 +21,32 @@
                     p { text-align: center; }
             </style>
         </noscript>
-
-        
         
         <div class="container-fluid">
+            <!-- HEAD TEMPLATE -->
+            <ui:include src="/templates/header.xhtml"/>
+            <br></br><br></br><br></br>
             
-            
-            <h:panelGroup>
-            <h:form>
+            <h:panelGroup  id="login_div" layout="block">
+               
+                <h:form>
+                    <div  class="" align="right">
+                         <!-- LOCALE TEMPLATE -->
+                     <ui:include src="/templates/locales.xhtml"/>   
+                    </div>
+                </h:form>
                 
+            <h:form id="login_form">
                 <div class="index" align="right">                    
-                    <ui:include src="/templates/header.xhtml"/>
-                    <br></br><br></br><br></br>
-                    
-                    
                     <div class="login">
-                     <!-- LOCALE TEMPLATE -->
-                     <ui:include src="/templates/locales.xhtml"/>
-                     
-                     <!-- FIELD FOR LOGIN -->
+                        
+                    <!-- FIELD FOR LOGIN -->
                     <tr>
                          <td>
-                             <h:inputText class="input"></h:inputText>
+                             <h:inputText class="input" id="username" value="#{authorization.username}" required="true" requiredMessage="#{msg.required_login}">
+                                <f:validator validatorId="kz.ogfox.web.validators.IndexValidator"/>
+                                <f:ajax event="keyup" render="loginError"/>
+                             </h:inputText>
                          </td>                        
                         <td width="200" align="left"><span style="color:red;">*</span> #{msg.input_name}</td>
                     </tr>
@@ -49,7 +54,9 @@
                     <!-- FIELD FOR PASSWORD -->
                     <tr>
                         <td>
-                            <h:inputSecret class="input"></h:inputSecret>
+                            <h:inputSecret class="input" id="passwd" value="#{authorization.password}" required="true" requiredMessage="#{msg.required_password}">
+                                <f:ajax event="keyup" render="passwdError"/>
+                            </h:inputSecret>
                         </td>
                          <td width="200" align="left"><span style="color:red;">*</span> #{msg.input_passwd}</td>
                     </tr>
@@ -58,13 +65,24 @@
                     <!-- LOGIN BUTTON -->
                     <tr>
                         <td>
-                            <h:commandButton action=" " value="#{msg.log_in}" styleClass="btn btn-info"></h:commandButton>
+                            <h:commandButton action="#{authorization.logIn()}" value="#{msg.log_in}" styleClass="btn btn-info"></h:commandButton>
                         </td>
                     </tr>
+                    
                     <!-- REG BUTTON -->
                     <tr>
                         <td>
-                            <h:commandButton action=" " value="#{msg.registration}" styleClass="btn btn-info"></h:commandButton>
+                            <h:commandButton action="pages/registration?faces-redirect=true" value="#{msg.registration}" styleClass="btn btn-info"></h:commandButton>
+                        </td>
+                    </tr>
+                    
+                    <!-- ERRORS -->
+                    <tr>
+                        <td colspan="3">
+                            <br></br>
+                            <h:message id="loginError" for="username" styleClass="error"/>
+                            <br></br>
+                            <h:message id="passwdError" for="passwd" styleClass="error"/>
                         </td>
                     </tr>
                     </div>
